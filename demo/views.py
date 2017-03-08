@@ -97,7 +97,7 @@ def upload_video(request):
 								unique_filename = name + "_" + str(int(timestamp)) + "." + ext
 								filename = unique_filename
 						video_file.name = filename
-					    s3.upload_fileobj(video_file,"ryankelly-superurop","Test")
+						s3.upload_fileobj(video_file,"ryankelly-superurop","Test")
 
 def upload_gps_file(request):
     # Handle file upload
