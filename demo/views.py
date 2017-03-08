@@ -34,7 +34,7 @@ def index(request):
     form = DocumentForm() # A empty, unbound form
     return render_to_response('demo/index.html',{'form': form}, context_instance=RequestContext(request))
 
-
+"""
 def upload_video(request):
     # Handle file upload
     logger = SearchObjectsLogger(UPLOAD_LOG_FILE)
@@ -101,7 +101,7 @@ def upload_video(request):
         else:
             form = DocumentForm() # A empty, unbound form 
     return render_to_response('demo/index.html',{'form': form, 'video_upload_status':""}, context_instance=RequestContext(request))
-"""
+
 def upload_gps_file(request):
     # Handle file upload
     if request.method == 'POST':
