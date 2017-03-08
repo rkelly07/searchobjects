@@ -35,8 +35,7 @@ def index(request):
     return render_to_response('demo/index.html',{'form': form}, context_instance=RequestContext(request))
 
 
-""" OLD FUNCTION
-def upload_video(request):
+"""def upload_video(request):
     # Handle file upload
     logger = SearchObjectsLogger(UPLOAD_LOG_FILE)
     upload_start = time.time()
@@ -83,22 +82,26 @@ def upload_video(request):
 def upload_video(request):
 		s3 = boto3.resource('s3')
 		if request.method == 'POST':
-				form = DocumentForm(request.POST, request.FILES)
-				if form.is_valid():
-						video_file = request.FILES['docfile']
+			form = DocumentForm(request.POST, request.FILES)
+			if form.is_valid():
+				video_file = request.FILES['docfile']
 
-						filename = video_file.name.strip()
-						name_and_ext = filename.split('.')
-						orig_name = filename
-						if len(name_and_ext) == 2:
-								name = name_and_ext[0]
-								ext = name_and_ext[1]
-								timestamp = time.time()
-								unique_filename = name + "_" + str(int(timestamp)) + "." + ext
-								filename = unique_filename
-						video_file.name = filename
-						s3.upload_fileobj(video_file,"ryankelly-superurop",filename)
-						return render_to_response('demo/index.html',{'form': form, 'video_upload_status':"Successfully uploaded "+orig_name+" and started processing."}, context_instance=RequestContext(request))	
+				filename = video_file.name.strip()
+				name_and_ext = filename.split('.')
+				orig_name = filename
+				if len(name_and_ext) == 2:
+					name = name_and_ext[0]
+					ext = name_and_ext[1]
+					timestamp = time.time()
+					unique_filename = name + "_" + str(int(timestamp)) + "." + ext
+					filename = unique_filename
+				video_file.name = filename
+				s3.upload_fileobj(video_file,"ryankelly-superurop",filename)
+				return render_to_response('demo/index.html',{'form': form, 'video_upload_status':"Successfully uploaded "+orig_name+" and started processing."}, context_instance=RequestContext(request))
+			else:
+                form = DocumentForm() # A empty, unbound form 
+	return render_to_response('demo/index.html',{'form': form, 'video_upload_status':""}, context_instance=RequestContext(request))
+
 def upload_gps_file(request):
     # Handle file upload
     if request.method == 'POST':
