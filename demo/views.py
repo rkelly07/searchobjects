@@ -97,7 +97,7 @@ def upload_video(request):
 								unique_filename = name + "_" + str(int(timestamp)) + "." + ext
 								filename = unique_filename
 						video_file.name = filename
-						s3.upload_fileobj(video_file,"ryankelly-superurop","Test")
+						s3.upload_fileobj(video_file,"ryankelly-superurop",filename)
 						return render_to_response('demo/index.html',{'form': form, 'video_upload_status':"Successfully uploaded "+orig_name+" and started processing."}, context_instance=RequestContext(request))	
 def upload_gps_file(request):
     # Handle file upload
