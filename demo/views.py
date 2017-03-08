@@ -80,7 +80,7 @@ def upload_video(request):
     return render_to_response('demo/index.html',{'form': form, 'video_upload_status':""}, context_instance=RequestContext(request))
 """
 def upload_video(request):
-    s3 = boto3.resource('s3')
+    s3 = boto3.client('s3')
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
