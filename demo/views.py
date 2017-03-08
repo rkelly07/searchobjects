@@ -21,7 +21,7 @@ import threading
 import time
 from logger import SearchObjectsLogger
 
-#import boto3
+import boto3
 
 #GLOBAL VARIABLES
 SUMMARIZE_VIDEO_PATH = '/home/serverdemo/LOCAL_DATA/summarization/video1/test.mp4' #later found from db, in the function below
